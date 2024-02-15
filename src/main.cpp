@@ -2,8 +2,6 @@
 
 using namespace std;
 
-
-
 int main (){
     vector<Cliente> Clientes;
     int n;
