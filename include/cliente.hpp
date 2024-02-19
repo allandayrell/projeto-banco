@@ -15,6 +15,9 @@ class Cliente{
     void Depositar(int quantia);
     void Transferencia(int quantia, int numContaPagador, int numContBeneficiario);
 
+    void ImprimeNome();
+    void ImprimeSaldo();
+
     string nome;
     int numConta;
     int saldo;

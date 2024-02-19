@@ -2,31 +2,34 @@
 #define ARVORE_HPP
 
 #include "cliente.hpp"
+
 class NoCliente {
-public:
+  public:
     NoCliente();
-private:
-    Cliente cliente;
-    NoCliente* esq;
+  private:
+    Cliente cliente; //tipoitem
+    NoCliente* esq; //tipono
     NoCliente* dir;
     friend class ArvoreClientes;
 };
 
-NoCliente::NoCliente() {
-    esq = nullptr;
-    dir = nullptr;
-}
+
 
 class ArvoreClientes {
-public:
+  public:
     ArvoreClientes();
     ~ArvoreClientes();
+
     void Insere(Cliente cliente);
-    // Outros métodos necessários para manipular a árvore de clientes
-private:
+    void Limpa();
+    void PreOrdem(NoCliente *p); // imprime o item depois visita as arvores da esq depis dir 
+    void InOrdem(NoCliente *p); // visita a arvore da esq, imprime o item e depois visita a sub arvore dir
+    void PosOrdem(NoCliente *p); // visita a arvore da esq e dir e depois imprime o item
+    void CaminhaNivel(); // visita os nós por nível usando uma fila aux
+
     void InsereRecursivo(NoCliente* &p, Cliente cliente);
     void ApagaRecursivo(NoCliente* p);
-    // Outros métodos privados necessários para manipular a árvore de clientes
+    
     NoCliente* raiz;
 };
 

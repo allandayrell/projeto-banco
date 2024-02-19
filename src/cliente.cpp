@@ -16,6 +16,14 @@ void Cliente::Transferencia(int quantia, int numContaPagador, int numContBenefic
     
 }
 
+void Cliente::ImprimeNome(){
+    cout << this->nome << endl;
+}
+
+void Cliente::ImprimeSaldo(){
+    cout << this->saldo << endl;
+}
+
 void InsertionSort(vector<Cliente>& listaClientes){
     int tamanho = listaClientes.size();
     int j;
