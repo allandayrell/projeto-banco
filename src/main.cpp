@@ -1,36 +1,79 @@
 #include "cliente.hpp"
 #include "arvore.hpp"
+#include <fstream>
+#include <sstream>
 
 using namespace std;
 
+string tratamentoNome(string nome){
+    char c;
+    int t = nome.size();
+    for(int i = 0; i < t; i++){
+        if(c == '_'){
+            nome[i] = ' ';
+        }
+    }
+    return nome;
+}
+
 int main (){
-    vector<Cliente> Clientes;
     ArvoreClientes arvore;
     Cliente cliente;
     string entrada;
-    int n;
+    int numClientes = 0;
 
-    cout << "digite n" << endl;
-    cin >> n;
-    Clientes.resize(n);
+    string listaParaArvore = "listaClientes.txt";
 
-    while(getline(cin, entrada)){
-        if(entrada.empty()){
-            break;
+    ifstream arquivo(listaParaArvore);
+    if (!arquivo.is_open()) {
+        cerr << "Erro ao abrir o arquivo " << endl;
+        return 1;
+    }
+
+    string linha;
+    while (getline(arquivo, linha)) {
+        // Cria um stringstream a partir da linha
+        istringstream iss(linha);
+
+        // Extrai os dados da linha
+        if (iss >> cliente.nome >> cliente.numConta >> cliente.saldo) {
+           arvore.Insere(cliente);
+           numClientes += 1;
+        } else {
+            cerr << "Erro ao extrair dados da linha: " << linha << endl;
         }
+    }
+    arquivo.close();
 
-        cin >> cliente.nome >> cliente.numConta >> cliente.saldo;
-        arvore.Insere(cliente);
+    char opcao;
+    cout << "Digite uma opção: "<< endl << "'g' para gerente" << endl << "'c' para cliente" << endl;
+    cin >> opcao;
+
+    int conta;
+    string nome;
+    switch (opcao)
+    {
+    case 'c':
+        // numero conta
+        cout << "Digite o numero da conta: ";
+        cin >> conta;
+        // achar o numero e dizer bem vindo fulano
+        nome = arvore.Procura(conta);
+        cout << "Bem vindo " << tratamentoNome(nome) << endl;
+        // dar opcao de ver saldo e fazer transferencia
+        break;
+
+    case 'g':
+        // chave de acesso
+        // dar opcao de adicionar ou retirar cliente
+        // dar opcao de ver saldo de um cliente x
+        break;
+
+    default:
+        break;
     }
 
-    cout << "digite " << n << " nomes" << endl;
+    //arvore.InOrdemNumConta(arvore.getRaiz());
 
-    for (int i = 0; i < n; i++) {
-        cin >> Clientes[i].nome;
-    }
-
-    for(int i = 0; i < n; i++){
-        cout << Clientes[i].nome << endl;
-    }
-
+    return 0;
 }
