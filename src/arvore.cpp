@@ -28,33 +28,7 @@ void ArvoreClientes::InsereRecursivo(NoCliente* &p, Cliente cliente){
         InsereRecursivo(p->dir, cliente);
     }
 }
-/*
-string ArvoreClientes::Procura(int numConta){
-    NoCliente* raiz = this->getRaiz();
-    Cliente cliente;
-    cliente = percorreArvore(raiz, numConta);
 
-    return cliente.nome;  
-}
-
-// abordagem recursiva
-Cliente ArvoreClientes::percorreArvore(NoCliente* p, int numConta){
-    Cliente clienteX;
-    if(p != NULL){
-        percorreArvore(p->esq, numConta);
-        if(numConta == p->cliente.numConta){
-            clienteX = p->cliente;
-        }
-        percorreArvore(p->dir, numConta);
-    }
-    else{
-        // erro
-        cout << "Erro ao achar conta" << endl;
-    }
-
-    return clienteX;
-    
-}*/
 
 string ArvoreClientes::Procura(int numConta){
     Cliente x;
@@ -98,6 +72,26 @@ void ArvoreClientes::ApagaRecursivo(NoCliente *p){
         ApagaRecursivo(p->esq);
         ApagaRecursivo(p->dir);
         delete p;
+    }
+}
+
+void ArvoreClientes::Transferencia(int quantia, int numContaPagador, int numContBeneficiario){
+    Cliente pagador, beneficiario;
+    pagador = PercorreIterativo(numContaPagador);
+    beneficiario = PercorreIterativo(numContBeneficiario);
+
+    if(beneficiario.numConta == -1){
+        cout << "Cliente não encontrado." << endl;
+        return; 
+    }
+
+    else if(pagador.saldo < quantia){
+        cout << "Saldo insuficiente." << endl;
+    }
+
+    else{
+        pagador.Sacar(quantia);
+        beneficiario.Depositar(quantia);
     }
 }
 

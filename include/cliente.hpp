@@ -14,7 +14,6 @@ class Cliente{
     int VerificarSaldo();
     void Sacar(int quantia);
     void Depositar(int quantia);
-    void Transferencia(int quantia, int numContaPagador, int numContBeneficiario);
 
     void ImprimeNome();
     void ImprimeSaldo();
@@ -24,6 +23,5 @@ class Cliente{
     int saldo;
 };
 
-void InsertionSort(vector<Cliente>& listaClientes);
 
 #endif

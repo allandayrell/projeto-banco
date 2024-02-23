@@ -21,7 +21,7 @@ class ArvoreClientes {
     void Insere(Cliente cliente);
     string Procura(int numConta);
     void Limpa();
-
+    void Transferencia(int quantia, int numContaPagador, int numContBeneficiario);
 
     void PreOrdemNumConta(NoCliente *p); // imprime o item depois visita as arvores da esq depis dir 
     void InOrdemNumConta(NoCliente *p); // visita a arvore da esq, imprime o item e depois visita a sub arvore dir

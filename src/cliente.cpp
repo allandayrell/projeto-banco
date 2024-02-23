@@ -12,10 +12,6 @@ void Cliente::Depositar(int quantia){
     saldo = saldo + quantia;
 }
 
-void Cliente::Transferencia(int quantia, int numContaPagador, int numContBeneficiario){
-    
-}
-
 void Cliente::ImprimeNome(){
     cout << this->nome << endl;
 }
